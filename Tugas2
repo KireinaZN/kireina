@@ -1,0 +1,59 @@
+package Tugas2;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        DataMahasiswa dataMahasiswa = new DataMahasiswa();
+
+        Scanner scanner = new Scanner(System.in);
+        boolean lanjut = true;
+        while (lanjut) {
+            System.out.print("Masukkan NIM Mahasiswa: ");
+            String nim = scanner.nextLine();
+
+            System.out.print("Masukkan nama Mahasiswa: ");
+            String nama = scanner.nextLine();
+
+            System.out.print("Masukkan alamat Mahasiswa: ");
+            String alamat = scanner.nextLine();
+
+            dataMahasiswa.tambahMahasiswa(nim, nama, alamat);
+
+            System.out.print("Tambah data Mahasiswa lagi? (y/n): ");
+            String tambah = scanner.nextLine();
+
+            if (!tambah.equalsIgnoreCase("y")) {
+                lanjut = false;
+            }
+        }
+
+        System.out.println("==================================");
+        dataMahasiswa.tampilkanMahasiswa();
+    }
+}
+
+class DataMahasiswa {
+    private ArrayList<String> namaMahasiswa;
+    private ArrayList<String> nimMahasiswa;
+    private ArrayList<String> alamatMahasiswa;
+
+    public DataMahasiswa() {
+        namaMahasiswa = new ArrayList<>();
+        nimMahasiswa = new ArrayList<>();
+        alamatMahasiswa = new ArrayList<>();
+    }
+
+    public void tambahMahasiswa(String nim, String nama, String alamat) {
+        nimMahasiswa.add(nim);
+        namaMahasiswa.add(nama);
+        alamatMahasiswa.add(alamat);
+    }
+
+    public void tampilkanMahasiswa() {
+        for (int i = 0; i < nimMahasiswa.size(); i++) {
+            System.out.println(nimMahasiswa.get(i) + " | " + namaMahasiswa.get(i) + " | " + alamatMahasiswa.get(i));
+        }
+    }
+}
